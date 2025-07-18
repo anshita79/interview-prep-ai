@@ -9,9 +9,7 @@ An AI-powered tool to help with interview preparation.
 - [AI-Generated Interview Questions](#functionalities)
 - [Real-Time Feedback](#functionalities)
 - [Session Management](#functionalities)
-- [Progress Tracking](#functionalities)
 - [Interactive User Interface](#functionalities)
-- [Answer Submission](#functionalities)
 - [Session Deletion](#functionalities)
 - [Modal Popups](#functionalities)
 - [API Integration](#functionalities)
@@ -37,12 +35,8 @@ Generates customized questions based on job roles and experience levels.
 Provides instant feedback on answers to highlight strengths and weaknesses.
 ### Session Management
 Allows users to create, save, and manage practice sessions.
-### Progress Tracking
-Displays a dashboard to track performance over time.
 ### Interactive User Interface
 Offers a React-based UI for practicing and navigating.
-### Answer Submission
-Enables users to submit responses for AI evaluation.
 ### Session Deletion
 Lets users delete unwanted sessions.
 ### Modal Popups
