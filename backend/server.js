@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const { connect } = require("http2");
 const connectDB = require("./config/db");
 
 const authRoutes = require('./routes/authRoutes');
@@ -16,12 +15,12 @@ const app = express();
 
 
 
-//Middleware to handle cors
-
+// Middleware to handle cors
 app.use(
     cors({
         origin: [
-            "https://interview-prep-ai-front-end.onrender.com"
+            "https://interview-prep-ai-front-end.onrender.com",
+            "http://localhost:3000"
         ],
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         allowedHeaders: ["Content-Type", "Authorization"],
@@ -32,24 +31,31 @@ connectDB()
 
 
 
-//Middleware
+// Middleware
 app.use(express.json());
 
 
 
-//Routes
-app.use("/api/auth",authRoutes);
+// Health check route
+app.get("/", (req, res) => {
+    res.send("Backend is running!");
+});
+
+
+
+// Routes
+app.use("/api/auth", authRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/questions", questionRoutes);
 
-app.use("/api/ai/generate-questions", protect , generateInterviewQuestions);
-app.use("/api/ai/generate-explanations", protect , generateConceptExplaination);
+app.use("/api/ai/generate-questions", protect, generateInterviewQuestions);
+app.use("/api/ai/generate-explanations", protect, generateConceptExplaination);
 
 
-//Serve uploads folder
-app.use("/uploads",express.static(path.join(__dirname,"uploads"),{}));
+// Serve uploads folder
+app.use("/uploads", express.static(path.join(__dirname, "uploads"), {}));
 
 
-//Start Server
+// Start Server
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
